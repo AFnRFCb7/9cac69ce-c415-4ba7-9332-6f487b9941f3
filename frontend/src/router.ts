@@ -37,7 +37,10 @@ export const router = createRouter({
             },
             {
               path: "/privacy",
-              component: PrivacyPage
+              component: PrivacyPage,
+              meta : {
+                  page : "privacy"
+              }
             },
             {
               path: "/terms",

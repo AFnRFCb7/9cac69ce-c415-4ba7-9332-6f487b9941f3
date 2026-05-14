@@ -9,26 +9,26 @@
 import DOMPurify from "dompurify";
 import { ref, watchEffect } from "vue";
 import { useI18n } from "vue-i18n";
-import { marked } from "marked"; // markdown parser
+import { useRoute } from "vue-router";
+import { marked } from "marked";
 
 const { locale } = useI18n();
+const route = useRoute();
 
 const html = ref("");
 
 async function loadMarkdown(path: string) {
   const res = await fetch(path);
   const text = await res.text();
-  html.value = DOMPurify.sanitize(marked.parse(text));
+  html.value = DOMPurify.sanitize(await marked.parse(text));
 }
 
-const FILES: Record<string, string> = {
-  en: "/content/privacy.en.md",
-  zh: "/content/privacy.zh.md",
-  es: "/content/privacy.es.md",
-};
-
 watchEffect(() => {
-  const file = FILES[locale.value] ?? FILES.en;
+  const page = route.meta.page as string;
+
+  const file =
+    `/content/${page}.${locale.value}.md`;
+
   loadMarkdown(file);
 });
 </script>
