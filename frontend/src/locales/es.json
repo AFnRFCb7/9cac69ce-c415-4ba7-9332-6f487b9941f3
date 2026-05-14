@@ -1,0 +1,13 @@
+{
+  "apply": "Aplicar",
+  "description": "Esta es la página de inicio",
+  "home": "Inicio",
+  "language": "Idioma",
+  "login": "Iniciar sesión",
+  "logout": "Cerrar sesión",
+  "privacy": "Privacidad",
+  "status": "Estado",
+  "support": "Soporte",
+  "terms": "Términos",
+  "title": "Bienvenido"
+}

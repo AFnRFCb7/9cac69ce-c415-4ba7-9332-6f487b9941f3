@@ -1,0 +1,9 @@
+.idea
+misc.xml
+modules.xml
+vcs.xml
+backend/.env
+frontend/.env
+frontend/node-modules
+frontend/package-lock.json
+
