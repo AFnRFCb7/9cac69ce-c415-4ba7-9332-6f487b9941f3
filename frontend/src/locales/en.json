@@ -1,0 +1,17 @@
+{
+  "apply" : "Apply",
+  "avatar" : "Avatar",
+  "copyright" : "© 2026 Visa Services",
+  "description" : "This is the home page" ,
+  "home" : "Home",
+  "language" : "Language",
+  "login" : "Login",
+  "logout" : "Logout",
+  "privacy" : "Privacy",
+  "save" : "Save",
+  "status" : "Status",
+  "support" : "Support",
+  "terms" : "Terms",
+  "todo" : "ToDo",
+  "title" : "Welcome"
+}
