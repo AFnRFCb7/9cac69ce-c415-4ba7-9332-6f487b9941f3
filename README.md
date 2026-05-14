@@ -18,3 +18,9 @@ sudo iptables -A INPUT -p tcp --dport 5173 -j ACCEPT`
 ## google auth
 1. https://console.cloud.google.com/apis/credentials?utm_source=chatgpt.com
 2. authorized redirect uri 
+
+http://frontend.192.168.1.135.sslip.io:5173/
+
+# TODO
+1. https
+2. 
