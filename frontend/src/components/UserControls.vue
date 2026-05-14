@@ -21,12 +21,19 @@
       <span v-else>{{ auth.user?.email }}</span>
     </div>
     <div v-if="auth.user">
+      <label
+        for="magic-number-input"
+        class="sr-only"
+      >
+        {{ t("magic number") }}
+      </label>
       <input
+        id="magic-number-input"
         v-model="draftMagicNumber"
         type="number"
       >
       <button @click="saveMagicNumber">
-        {{ t(save) }}
+        {{ t("save") }}
       </button>
     </div>
   </nav>
