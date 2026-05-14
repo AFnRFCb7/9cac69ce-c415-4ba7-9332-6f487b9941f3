@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import HomePage from "@/pages/HomePage.vue";
 import MainLayout from "@/components/MainLayout.vue";
 import LoginPage from "@/pages/LoginPage.vue"
-import PrivacyPage from "@/pages/PrivacyPage.vue";
+import MarkdownPage from "@/pages/MarkdownPage.vue";
 import ToDo from "@/components/ToDo.vue";
 
 export const router = createRouter({
@@ -32,20 +32,26 @@ export const router = createRouter({
               meta : { requiresAuth : true }
             },
             {
-              path: "/support",
-              component: ToDo
+              path: "/privacy",
+              component: MarkdownPage,
+              meta : {
+                  page : "support"
+              }
             },
             {
-              path: "/privacy",
-              component: PrivacyPage,
+              path: "/support",
+              component: MarkdownPage,
               meta : {
                   page : "privacy"
               }
             },
             {
               path: "/terms",
-              component: ToDo
-            }
+              component: MarkdownPage,
+              meta : {
+                  page : "terms"
+              }
+            },
         ]
     },
     {
