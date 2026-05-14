@@ -21,7 +21,6 @@
       <span v-else>{{ auth.user?.email }}</span>
     </div>
     <div v-if="auth.user">
-        <input />
       <input
         v-model="draftMagicNumber"
         type="number"
