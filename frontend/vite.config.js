@@ -8,5 +8,11 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
+  } ,
+  server: {
+    host: "0.0.0.0",
+    allowedHosts: [
+      "frontend.192.168.1.135.sslip.io"
+    ]
   }
 })

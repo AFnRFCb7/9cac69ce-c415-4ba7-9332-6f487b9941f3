@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { auth } from "@/auth";
 
 import HomePage from "@/pages/HomePage.vue";
-import Layout from "@/components/Layout.vue";
+import MainLayout from "@/components/MainLayout.vue";
 import LoginPage from "@/pages/LoginPage.vue"
 import PrivacyPage from "@/pages/PrivacyPage.vue";
 import ToDo from "@/components/ToDo.vue";
@@ -13,7 +13,7 @@ export const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Layout,
+      component: MainLayout,
       children :
         [
             {

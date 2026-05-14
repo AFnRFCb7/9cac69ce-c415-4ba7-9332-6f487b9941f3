@@ -8,20 +8,15 @@ import vueParser from "vue-eslint-parser";
 
 export default [
   js.configs.recommended,
-
   ...tseslint.configs.recommended,
-
   ...vue.configs["flat/recommended"],
-
+  ...vueA11y.configs["flat/recommended"],
   {
     files: ["**/*.{js,ts,vue}"],
     plugins: {
-        "vuejs-accessibility": vueA11y,
-        "vue-local": custom.plugins["vue-local"],
-
+        "vuejs-accessibility": vueA11y
     },
     rules: {
-        "vue-local/require-label-or-aria": "error",
         "vue/no-bare-strings-in-template": "warn" ,
         "vuejs-accessibility/alt-text": "warn"
     } ,
