@@ -1,4 +1,6 @@
 {
+  "ASK_COUNTRY" : "Which country are you applying to?",
+  "CHAT_UNABLE" : "Unable to reach support service.",
   "apply" : "Apply",
   "avatar" : "Avatar",
   "copyright" : "© 2026 Visa Services",

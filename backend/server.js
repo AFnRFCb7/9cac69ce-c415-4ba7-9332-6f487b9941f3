@@ -157,7 +157,7 @@ app.post("/api/chat", async (req, res) => {
   let reply = "";
 
   if (last.includes("visa")) {
-    reply = "Which country are you applying to?";
+    reply = "ASK_COUNTRY";
   } else if (last.includes("us") || last.includes("usa")) {
     reply = "Got it — US visa. Are you applying for F1 (student visa)?";
   } else {

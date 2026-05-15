@@ -27,6 +27,8 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 import { ref } from "vue";
 import ChatMessage from "@/components/chat/ChatMessage.vue";
 
@@ -67,12 +69,12 @@ async function send() {
 
     messages.value.push({
       role: "assistant",
-      content: data.message,
+      content: t(data.message),
     });
   } catch (e) {
     messages.value.push({
       role: "assistant",
-      content: "Unable to reach support service.",
+      content: t("CHAT_UNABLE"),
     });
   } finally {
     pending.value = false;

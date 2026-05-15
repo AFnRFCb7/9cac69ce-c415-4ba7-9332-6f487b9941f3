@@ -1,4 +1,6 @@
 {
+  "ASK_COUNTRY": "¿Para qué país desea solicitar una visa?",
+  "CHAT_UNABLE": "No se pudo conectar con el servicio de soporte.",
   "apply": "Aplicar",
   "description": "Esta es la página de inicio",
   "home": "Inicio",
