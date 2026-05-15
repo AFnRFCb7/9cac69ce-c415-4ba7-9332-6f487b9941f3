@@ -8,7 +8,7 @@ Obtén ayuda para entender los requisitos de visa, la documentación y los pasos
 
 👉 [Iniciar lista de verificación](/apply)
 
-👉 [Hacer una pregunta](/support)
+👉 [Hacer una pregunta](/chat)
 
 ---
 

@@ -8,7 +8,7 @@ Get help understanding visa requirements, documentation, and application steps.
 
 👉 [Start Checklist](/apply)
 
-👉 [Ask a Question](/support)
+👉 [Ask a Question](/chat)
 
 ---
 

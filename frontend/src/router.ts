@@ -30,6 +30,11 @@ export const router = createRouter({
               meta : { requiresAuth : true }
             },
             {
+              path: "/chat",
+              component: ToDo ,
+              meta : { requiresAuth : true }
+            },
+            {
               path: "/status",
               component: ToDo ,
               meta : { requiresAuth : true }
