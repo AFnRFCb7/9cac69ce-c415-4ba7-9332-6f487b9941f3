@@ -5,11 +5,15 @@ import { router } from "./router";
 import { i18n } from "./i18n";
 import "@/assets/global.css";
 
-createApp(App)
-  .use(router)
-  .use(i18n)
-  .mount("#app");
-
 import { loadUser } from "@/auth";
 
-loadUser();
+async function bootstrap() {
+  await loadUser();
+
+  createApp(App)
+    .use(router)
+    .use(i18n)
+    .mount("#app");
+}
+
+bootstrap();

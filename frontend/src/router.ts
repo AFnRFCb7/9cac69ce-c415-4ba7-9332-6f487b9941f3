@@ -5,6 +5,7 @@ import HomePage from "@/pages/HomePage.vue";
 import MainLayout from "@/components/MainLayout.vue";
 import LoginPage from "@/pages/LoginPage.vue"
 import MarkdownPage from "@/pages/MarkdownPage.vue";
+import ChatPage from "@/pages/ChatPage.vue";
 import ToDo from "@/components/ToDo.vue";
 
 export const router = createRouter({
@@ -31,7 +32,7 @@ export const router = createRouter({
             },
             {
               path: "/chat",
-              component: ToDo ,
+              component: ChatPage ,
               meta : { requiresAuth : true }
             },
             {
