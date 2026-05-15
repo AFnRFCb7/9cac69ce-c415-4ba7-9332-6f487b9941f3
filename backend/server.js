@@ -149,6 +149,22 @@ app.get(
   }
 );
 
+app.post("/api/chat", async (req, res) => {
+  const message = req.body.message;
+
+  // MVP response (no AI yet)
+  let reply = "";
+
+  if (message.toLowerCase().includes("visa")) {
+    reply = "Which country are you applying to?";
+  } else {
+    reply =
+      "I can help with visa applications and immigration questions. Tell me your situation.";
+  }
+
+  res.json({ message: reply });
+});
+
 
 app.get("/health/:id", (req,res) => {
     res.json(req.params.id);
@@ -177,6 +193,6 @@ function broadcast(data) {
   }
 }
 
-server.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+server.listen(3000, "0.0.0.0", () => {
+  console.log("API + WS listening on 0.0.0.0:3000");
 });
