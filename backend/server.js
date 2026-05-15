@@ -150,16 +150,18 @@ app.get(
 );
 
 app.post("/api/chat", async (req, res) => {
-  const message = req.body.message;
+  const messages = req.body.messages;
 
-  // MVP response (no AI yet)
+  const last = messages[messages.length - 1].content.toLowerCase();
+
   let reply = "";
 
-  if (message.toLowerCase().includes("visa")) {
+  if (last.includes("visa")) {
     reply = "Which country are you applying to?";
+  } else if (last.includes("us") || last.includes("usa")) {
+    reply = "Got it — US visa. Are you applying for F1 (student visa)?";
   } else {
-    reply =
-      "I can help with visa applications and immigration questions. Tell me your situation.";
+    reply = "Tell me your situation and I’ll help guide your visa process.";
   }
 
   res.json({ message: reply });
