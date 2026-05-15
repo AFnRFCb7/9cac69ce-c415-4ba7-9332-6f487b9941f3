@@ -159,12 +159,12 @@ app.post("/api/chat", async (req, res) => {
   if (last.includes("visa")) {
     reply = "ASK_COUNTRY";
   } else if (last.includes("us") || last.includes("usa")) {
-    reply = "Got it — US visa. Are you applying for F1 (student visa)?";
+    reply = "US_VISA_F1_CLARIFY";
   } else {
-    reply = "Tell me your situation and I’ll help guide your visa process.";
+    reply = "VISA_GUIDE_PROMPT";
   }
 
-  res.json({ message: reply });
+  res.json({ kind : "TEXT" , variant : "I18N" , key : reply });
 });
 
 

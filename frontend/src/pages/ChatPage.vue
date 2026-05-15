@@ -72,10 +72,17 @@ async function send() {
 
     const data = await res.json();
 
-    messages.value.push({
-      role: "assistant",
-      content: t(data.message),
-    });
+    if((data.kind === "TEXT")&&(data.variant === "I18N")){
+        messages.value.push({
+            role: "assistant",
+            content: t(data.key),
+        });
+    }else if((data.kind === "TEXT")&&(data.variant === "LITERAL")) {
+        messages.value.push({
+            role: "assistant",
+            content: data.key
+        });
+    }
   } catch (e) {
     messages.value.push({
       role: "assistant",
