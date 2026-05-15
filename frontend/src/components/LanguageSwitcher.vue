@@ -15,10 +15,21 @@
   </label>
 </template>
 <script setup lang="ts">
-
 import { useI18n } from "vue-i18n";
-const { locale } = useI18n();
-const { t } = useI18n();
+import { watch } from "vue";
+
+const { locale, t } = useI18n();
+
+// initialize from storage once
+const saved = localStorage.getItem("locale");
+if (saved) {
+  locale.value = saved;
+}
+
+// persist changes
+watch(locale, (newLocale) => {
+  localStorage.setItem("locale", newLocale);
+});
 </script>
 <style scoped>
 .lang-select {

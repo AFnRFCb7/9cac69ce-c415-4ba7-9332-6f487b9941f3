@@ -28,7 +28,12 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-const { t } = useI18n();
+
+
+const { t , locale } = useI18n();
+
+
+console.log("CHAT LOCALE",locale.value);
 import { ref } from "vue";
 import ChatMessage from "@/components/chat/ChatMessage.vue";
 
