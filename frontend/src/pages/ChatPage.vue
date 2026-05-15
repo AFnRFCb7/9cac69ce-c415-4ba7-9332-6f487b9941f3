@@ -1,19 +1,17 @@
 <template>
-  <div class="chat-window">
+  <main class="chat-page">
+    <!-- Messages -->
     <div class="messages">
-      <div
-        v-for="(message, index) in messages"
-        :key="index"
-        :class="['message', message.role]"
-      >
-        {{ message.content }}
-      </div>
+      <ChatMessage
+        v-for="(m, i) in messages"
+        :key="i"
+        :role="m.role"
+        :content="m.content"
+      />
     </div>
 
-    <form
-      class="input-row"
-      @submit.prevent="submit"
-    >
+    <!-- Input -->
+    <form class="input-row" @submit.prevent="send">
       <input
         v-model="draft"
         type="text"
@@ -21,29 +19,32 @@
         :disabled="pending"
       />
 
-      <button
-        type="submit"
-        :disabled="pending || !draft.trim()"
-      >
+      <button type="submit" :disabled="pending || !draft.trim()">
         Send
       </button>
     </form>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import ChatMessage from "@/components/chat/ChatMessage.vue";
 
-interface ChatMessage {
+interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-const messages = ref<ChatMessage[]>([]);
+const messages = ref<Message[]>([]);
 const draft = ref("");
 const pending = ref(false);
 
-async function sendMessage(text: string) {
+async function send() {
+  const text = draft.value.trim();
+  if (!text || pending.value) return;
+
+  draft.value = "";
+
   messages.value.push({
     role: "user",
     content: text,
@@ -57,9 +58,7 @@ async function sendMessage(text: string) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        message: text,
-      }),
+      body: JSON.stringify({ message: text }),
     });
 
     const data = await res.json();
@@ -68,31 +67,23 @@ async function sendMessage(text: string) {
       role: "assistant",
       content: data.message,
     });
-  } catch (err) {
+  } catch (e) {
     messages.value.push({
       role: "assistant",
-      content: "Unable to contact support service.",
+      content: "Unable to reach support service.",
     });
   } finally {
     pending.value = false;
   }
 }
-
-async function submit() {
-  const text = draft.value.trim();
-
-  if (!text) {
-    return;
-  }
-
-  draft.value = "";
-
-  await sendMessage(text);
-}
 </script>
 
 <style scoped>
-.chat-window {
+.chat-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -101,23 +92,7 @@ async function submit() {
 .messages {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.message {
-  padding: 12px;
-  border-radius: 12px;
-  max-width: 80%;
-}
-
-.message.user {
-  align-self: flex-end;
-  background: #dbeafe;
-}
-
-.message.assistant {
-  align-self: flex-start;
-  background: #f3f4f6;
+  gap: 12px;
 }
 
 .input-row {
