@@ -19,7 +19,10 @@ export const router = createRouter({
             {
                 path : "" ,
                 name : "homePage" ,
-                component : HomePage
+                component : MarkdownPage ,
+                meta : {
+                    page : "home"
+                }
             } ,
             {
               path: "/apply",
@@ -42,7 +45,7 @@ export const router = createRouter({
               path: "/support",
               component: MarkdownPage,
               meta : {
-                  page : "privacy"
+                  page : "chat"
               }
             },
             {
