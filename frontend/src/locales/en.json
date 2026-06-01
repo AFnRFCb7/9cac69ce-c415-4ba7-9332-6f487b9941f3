@@ -1,4 +1,8 @@
 {
+  "ASK_COUNTRY" : "Which country are you applying to?",
+  "CHAT_UNABLE" : "Unable to reach support service.",
+  "US_VISA_F1_CLARIFY" : "Got it — US visa. Are you applying for F1 (student visa)?",
+  "VISA_GUIDE_PROMPT" : "Tell me your situation and I’ll help guide your visa process." ,
   "apply" : "Apply",
   "avatar" : "Avatar",
   "copyright" : "© 2026 Visa Services",
