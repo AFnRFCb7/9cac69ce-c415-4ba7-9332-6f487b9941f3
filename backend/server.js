@@ -27,6 +27,10 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    sameSite: "lax",   // IMPORTANT
+    secure: false      // HTTP only (dev)
+  }
 }));
 
 app.use(passport.initialize());
@@ -36,12 +40,13 @@ app.use(passport.session());
 const users = [];
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+passport.deserializeUser((id, done) => {
+  const user = users.find(u => u.id === id);
+  done(null, user || null);
+});1
 
 
 passport.use(
@@ -149,6 +154,100 @@ app.get(
   }
 );
 
+const sessions = new Map();
+
+app.post("/api/chat", async (req, res) => {
+console.log("USER:", req.user);
+if (!req.user) {
+  return res.status(401).json({
+    kind: "TEXT",
+    variant: "I18N",
+    key: "LOGIN_REQUIRED",
+  });
+}
+  const messages = req.body.messages;
+
+  const last =
+    messages[messages.length - 1].content.toLowerCase();
+
+  let session = sessions.get(req.user.id);
+
+  if (!session) {
+    session = {
+      state: "START",
+      country: null,
+      visaType: null,
+    };
+
+    sessions.set(req.user.id, session);
+  }
+
+  switch (session.state) {
+
+    case "START": {
+      session.state = "ASK_COUNTRY";
+
+      return res.json({
+        kind: "TEXT",
+        variant: "I18N",
+        key: "ASK_COUNTRY",
+      });
+    }
+
+    case "ASK_COUNTRY": {
+      const text = last;
+
+      if (text.includes("us") || text.includes("usa")) {
+        session.country = "US";
+        session.state = "ASK_VISA_TYPE";
+
+        return res.json({
+          kind: "TEXT",
+          variant: "I18N",
+          key: "US_VISA_F1_CLARIFY",
+        });
+      }
+
+      return res.json({
+        kind: "TEXT",
+        variant: "I18N",
+        key: "ASK_COUNTRY",
+      });
+    }
+
+    case "ASK_VISA_TYPE": {
+      const text = last;
+
+      if (text.includes("student") || text.includes("f1")) {
+        session.visaType = "F1";
+        session.state = "DONE";
+
+        return res.json({
+          kind: "TEXT",
+          variant: "I18N",
+          key: "VISA_GUIDE_PROMPT",
+        });
+      }
+
+      return res.json({
+        kind: "TEXT",
+        variant: "I18N",
+        key: "US_VISA_F1_CLARIFY",
+      });
+    }
+
+    default: {
+      session.state = "START";
+
+      return res.json({
+        kind: "TEXT",
+        variant: "I18N",
+        key: "VISA_GUIDE_PROMPT",
+      });
+    }
+  }
+});
+
 
 app.get("/health/:id", (req,res) => {
     res.json(req.params.id);
@@ -177,6 +276,6 @@ function broadcast(data) {
   }
 }
 
-server.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+server.listen(3000, "0.0.0.0", () => {
+  console.log("API + WS listening on 0.0.0.0:3000");
 });

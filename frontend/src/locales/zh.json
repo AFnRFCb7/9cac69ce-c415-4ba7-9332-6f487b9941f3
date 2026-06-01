@@ -1,4 +1,6 @@
 {
+  "ASK_COUNTRY": "您想申请哪个国家的签证？",
+  "CHAT_UNABLE": "无法连接到支持服务。",
   "apply": "申请",
   "description": "这是主页",
   "home": "首页",

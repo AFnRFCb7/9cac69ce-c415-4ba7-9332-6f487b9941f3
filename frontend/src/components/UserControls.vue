@@ -20,16 +20,6 @@
       <span v-else-if="auth.user?.profileName">{{ auth.user?.profileName }}</span>
       <span v-else>{{ auth.user?.email }}</span>
     </div>
-    <div v-if="auth.user">
-        <input />
-      <input
-        v-model="draftMagicNumber"
-        type="number"
-      >
-      <button @click="saveMagicNumber">
-        {{ t(save) }}
-      </button>
-    </div>
   </nav>
   <LanguageSwitcher />
 </template>
@@ -77,6 +67,18 @@ function avatarUrl(url: string) {
 
 </script>
 <style scoped>
+a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+    opacity: 0.65;
+    transition: opacity 0.35s ease;
+}
+a:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
 .avatar {
   width: 32px;
   height: 32px;

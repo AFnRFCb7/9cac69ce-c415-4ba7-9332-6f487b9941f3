@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import { auth } from "@/auth";
 
 import HomePage from "@/pages/HomePage.vue";
-import Layout from "@/components/Layout.vue";
+import MainLayout from "@/components/MainLayout.vue";
 import LoginPage from "@/pages/LoginPage.vue"
-import PrivacyPage from "@/pages/PrivacyPage.vue";
+import MarkdownPage from "@/pages/MarkdownPage.vue";
+import ChatPage from "@/pages/ChatPage.vue";
 import ToDo from "@/components/ToDo.vue";
 
 export const router = createRouter({
@@ -13,17 +14,25 @@ export const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Layout,
+      component: MainLayout,
       children :
         [
             {
                 path : "" ,
                 name : "homePage" ,
-                component : HomePage
+                component : MarkdownPage ,
+                meta : {
+                    page : "home"
+                }
             } ,
             {
               path: "/apply",
               component: ToDo ,
+              meta : { requiresAuth : true }
+            },
+            {
+              path: "/chat",
+              component: ChatPage ,
               meta : { requiresAuth : true }
             },
             {
@@ -32,17 +41,26 @@ export const router = createRouter({
               meta : { requiresAuth : true }
             },
             {
-              path: "/support",
-              component: ToDo
+              path: "/privacy",
+              component: MarkdownPage,
+              meta : {
+                  page : "support"
+              }
             },
             {
-              path: "/privacy",
-              component: PrivacyPage
+              path: "/support",
+              component: MarkdownPage,
+              meta : {
+                  page : "chat"
+              }
             },
             {
               path: "/terms",
-              component: ToDo
-            }
+              component: MarkdownPage,
+              meta : {
+                  page : "terms"
+              }
+            },
         ]
     },
     {
