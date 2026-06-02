@@ -16,6 +16,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+console.log("FRONTEND_ORIGIN:", JSON.stringify(process.env.FRONTEND_ORIGIN));
+console.log("BACKEND_ORIGIN:", JSON.stringify(process.env.BACKEND_ORIGIN));
+
 const app = express();
 app.use(cors({
   origin: process.env.FRONTEND_ORIGIN,
