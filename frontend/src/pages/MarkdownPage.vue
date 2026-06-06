@@ -12,7 +12,7 @@ import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { marked } from "marked";
 
-const API = import.meta.env.VITE_API_BASE_URL;
+const API = import.meta.env.VITE_API_BASE;
 
 const { locale } = useI18n();
 const route = useRoute();
