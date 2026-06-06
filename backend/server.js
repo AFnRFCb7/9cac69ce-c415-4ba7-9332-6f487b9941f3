@@ -359,6 +359,23 @@ if (!req.user) {
   }
 });
 
+import path from "path";
+
+app.get("/api/content/:page", (req, res) => {
+  const { page } = req.params;
+  const lang = (req.query.lang as string) || "en";
+
+  const fileName = `${page}.${lang}.md`;
+  const filePath = path.join(process.cwd(), "data" , "content", fileName);
+
+  try {
+    const markdown = fs.readFileSync(filePath, "utf-8");
+    res.send(markdown); // IMPORTANT: not JSON
+  } catch (err) {
+    res.status(404).send("Not found");
+  }
+});
+
 
 app.get("/health/:id", (req,res) => {
     res.json(req.params.id);
