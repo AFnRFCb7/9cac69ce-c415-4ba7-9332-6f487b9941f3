@@ -1,0 +1,42 @@
+[
+  {
+    "title": {
+      "en": "Scotland fans 'heartbroken' as travel permits to World Cup withdrawn last minute",
+      "es": "Aficionados escoceses 'desconsolados' por la retirada de permisos de viaje al Mundial",
+      "zh": "苏格兰球迷因世界杯旅行许可临时撤销而‘心碎’"
+    },
+    "summary": {
+      "en": "Travel permits were withdrawn unexpectedly, disrupting fan travel plans.",
+      "es": "Los permisos de viaje fueron retirados inesperadamente, interrumpiendo los planes de los aficionados.",
+      "zh": "旅行许可被意外撤销，打乱了球迷的行程安排。"
+    },
+    "url": "https://www.bbc.com/news/articles/cwy2yleex87o"
+  },
+  {
+    "title": {
+      "en": "Haiti player’s U.S. visa ordeal highlights World Cup travel barriers",
+      "es": "La odisea de la visa de un jugador haitiano en EE. UU. revela barreras de viaje para el Mundial",
+      "zh": "海地球员的美国签证经历揭示世界杯旅行障碍"
+    },
+    "summary": {
+      "en": "Haiti midfielder Woodensky Pierre overcame visa delays to join teammates in Florida, highlighting how U.S. travel restrictions are affecting World Cup teams and fans.",
+      "es": "El mediocampista haitiano Woodensky Pierre superó retrasos en su visa para unirse a sus compañeros en Florida, lo que destaca cómo las restricciones de viaje de EE. UU. afectan a equipos y aficionados del Mundial.",
+      "zh": "海地中场球员伍登斯基·皮埃尔克服签证延误，在佛罗里达与队友会合，凸显美国旅行限制对世界杯球队和球迷的影响。"
+    },
+    "url": "https://www.miamiherald.com/news/nation-world/world/americas/haiti/article315994678.html"
+  },
+  {
+    "id": "d403f58c-5527-4353-836f-fcfa8b4923de",
+    "title": {
+      "en": "America’s Farms Depend More Than Ever on a Troubled Visa Program",
+      "es": "Las granjas de EE. UU. dependen cada vez más de un programa de visas problemático.",
+      "zh": "美国农场比以往更依赖一个充满争议的签证项目"
+    },
+    "summary": {
+      "en": "The H-2A agricultural visa program is rapidly expanding as farms struggle to find workers, but concerns remain about abuse, fraud, and weak protections for migrant laborers",
+      "es": "El programa de visas agrícolas H-2A se está expandiendo rápidamente mientras las granjas tienen dificultades para encontrar trabajadores, pero persisten preocupaciones sobre abusos, fraude y débiles protecciones para los trabajadores migrantes.",
+      "zh": "随着农场越来越难找到工人，H-2A农业签证项目正在迅速扩大，但人们仍然担忧其中的剥削、欺诈以及对移民工人的保护不足。"
+    },
+    "url": "https://www.nytimes.com/2026/06/04/business/economy/farms-h2a-visas-migrant-workers.html"
+  }
+]

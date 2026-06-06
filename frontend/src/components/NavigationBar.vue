@@ -7,6 +7,15 @@
       <RouterLink to="/apply">
         {{ t("apply") }}
       </RouterLink>
+      <RouterLink to="/visa">
+        {{ t("visa") }}
+      </RouterLink>
+      <RouterLink to="/citizenship">
+        {{ t("citizenship") }}
+      </RouterLink>
+      <RouterLink to="/news">
+        {{ t("news" ) }}
+      </RouterLink>
       <RouterLink to="/status">
         {{ t("status") }}
       </RouterLink>
