@@ -19,7 +19,7 @@ import { ref, onMounted } from "vue";
 const immigrationNews = ref([]);
 
 onMounted(async () => {
-  const res = await fetch("${import.meta.env.VITE_API_BASE}/api/immigration-news");
+  const res = await fetch(`${import.meta.env.VITE_API_BASE}/api/immigration-news`);
   immigrationNews.value = await res.json();
 });
 import { useI18n } from "vue-i18n";
