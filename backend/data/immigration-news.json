@@ -1,5 +1,6 @@
 [
   {
+    "id" : 1 ,
     "title": {
       "en": "Scotland fans 'heartbroken' as travel permits to World Cup withdrawn last minute",
       "es": "Aficionados escoceses 'desconsolados' por la retirada de permisos de viaje al Mundial",
@@ -13,6 +14,7 @@
     "url": "https://www.bbc.com/news/articles/cwy2yleex87o"
   },
   {
+    "id" : 2 ,
     "title": {
       "en": "Haiti player’s U.S. visa ordeal highlights World Cup travel barriers",
       "es": "La odisea de la visa de un jugador haitiano en EE. UU. revela barreras de viaje para el Mundial",
