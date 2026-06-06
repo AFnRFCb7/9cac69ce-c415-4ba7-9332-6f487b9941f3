@@ -45,4 +45,5 @@ const remove = async (id: string) => {
 };
 
 onMounted(load);
+console.log(`API=${API}`)
 </script>
