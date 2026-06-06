@@ -363,7 +363,7 @@ import path from "path";
 
 app.get("/api/content/:page", (req, res) => {
   const { page } = req.params;
-  const lang = (req.query.lang as string) || "en";
+  const lang = req.query.lang || "en";
 
   const fileName = `${page}.${lang}.md`;
   const filePath = path.join(process.cwd(), "data" , "content", fileName);
