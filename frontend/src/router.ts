@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import HomePage from "@/pages/HomePage.vue";
 import MainLayout from "@/components/MainLayout.vue";
 import LoginPage from "@/pages/LoginPage.vue"
+import NewsPage from "@/pages/NewsPage6.vue"
 import MarkdownPage from "@/pages/MarkdownPage.vue";
 import ChatPage from "@/pages/ChatPage.vue";
 import ToDo from "@/components/ToDo.vue";
@@ -36,6 +37,17 @@ export const router = createRouter({
               meta : { requiresAuth : true }
             },
             {
+              path: "/citizenship",
+              component: MarkdownPage,
+              meta : {
+                  page : "citizenship"
+              }
+            },
+            {
+                path : "/news",
+                component: NewsPage
+            },
+            {
               path: "/status",
               component: ToDo ,
               meta : { requiresAuth : true }
@@ -59,6 +71,13 @@ export const router = createRouter({
               component: MarkdownPage,
               meta : {
                   page : "terms"
+              }
+            },
+            {
+              path: "/visa",
+              component: MarkdownPage,
+              meta : {
+                  page : "visa"
               }
             },
         ]

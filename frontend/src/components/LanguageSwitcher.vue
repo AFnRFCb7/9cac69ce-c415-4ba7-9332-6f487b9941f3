@@ -6,11 +6,11 @@
       class="lang-select"
     >
       <!-- eslint-disable-next-line vue/no-bare-strings-in-template -->
-      <option value="en">English</option>
+      <option value="en">🇺🇸 English</option>
       <!-- eslint-disable-next-line vue/no-bare-strings-in-template -->
-      <option value="es">Español</option>
+      <option value="es">🇪🇸 Español</option>
       <!-- eslint-disable-next-line vue/no-bare-strings-in-template -->
-      <option value="zh">中文</option>
+      <option value="zh">🇨🇳 中文</option>
     </select>
   </label>
 </template>

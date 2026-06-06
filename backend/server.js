@@ -3,6 +3,8 @@ import cors from "cors";
 import { WebSocketServer } from "ws";
 import http from "http";
 
+import crypto from "crypto";
+
 import session from "express-session";
 
 import passport from "passport";
@@ -20,20 +22,33 @@ console.log("FRONTEND_ORIGIN:", JSON.stringify(process.env.FRONTEND_ORIGIN));
 console.log("BACKEND_ORIGIN:", JSON.stringify(process.env.BACKEND_ORIGIN));
 
 const app = express();
-app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN,
-  credentials: true,
-}));
-app.use(express.json());
+const allowedOrigins = [
+  process.env.FRONTEND_ORIGIN,
+  process.env.ADMIN_ORIGIN,
+];
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    sameSite: "lax",   // IMPORTANT
-    secure: false      // HTTP only (dev)
-  }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.json());
+
+console.log("allowedOrigins  =", allowedOrigins);
+
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`Origin ${origin} not allowed`));
+    }
+  },
+  credentials: true,
 }));
 
 app.use(passport.initialize());
@@ -49,7 +64,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   const user = users.find(u => u.id === id);
   done(null, user || null);
-});1
+});
 
 
 passport.use(
@@ -158,6 +173,80 @@ app.get(
 );
 
 const sessions = new Map();
+
+
+import fs from "fs";
+
+const FILE = "./data/immigration-news.json";
+
+function readNews() {
+  return JSON.parse(fs.readFileSync(FILE, "utf-8"));
+}
+
+function writeNews(data) {
+  fs.writeFileSync(FILE, JSON.stringify(data, null, 2));
+}
+
+// GET all news
+app.get("/api/immigration-news", (req, res) => {
+  res.json(readNews());
+});
+
+// CREATE news article
+app.post("/api/immigration-news", (req, res) => {
+  const news = readNews();
+
+  const newItem = {
+    id: crypto.randomUUID(),
+    ...req.body,
+  };
+
+  news.push(newItem);
+  writeNews(news);
+
+  res.status(201).json(newItem);
+});
+
+// UPDATE news article
+app.put("/api/immigration-news/:id", (req, res) => {
+  const news = readNews();
+  const { id } = req.params;
+
+  const index = news.findIndex(n => n.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "not found" });
+  }
+
+  news[index] = {
+    ...news[index],
+    ...req.body,
+    id,
+  };
+
+  writeNews(news);
+
+  res.json(news[index]);
+});
+
+// DELETE news article
+app.delete("/api/immigration-news/:id", (req, res) => {
+  const news = readNews();
+  const { id } = req.params;
+
+  const filtered = news.filter(n => n.id !== id);
+
+  if (filtered.length === news.length) {
+    return res.status(404).json({ error: "not found" });
+  }
+
+  writeNews(filtered);
+
+  res.json({ ok: true });
+});
+
+
+
 
 app.post("/api/chat", async (req, res) => {
 console.log("USER:", req.user);

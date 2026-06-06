@@ -2,14 +2,18 @@
   "ASK_COUNTRY": "您想申请哪个国家的签证？",
   "CHAT_UNABLE": "无法连接到支持服务。",
   "apply": "申请",
+  "citizenship" : "公民身份",
   "description": "这是主页",
   "home": "首页",
+  "Immigration News" : "移民新闻",
   "language": "语言",
   "login": "登录",
   "logout": "退出登录",
+  "news": "新闻",
   "privacy": "隐私",
   "status": "状态",
   "support": "支持",
   "terms": "条款",
-  "title": "欢迎"
+  "title": "欢迎",
+  "visa" : "签证"
 }

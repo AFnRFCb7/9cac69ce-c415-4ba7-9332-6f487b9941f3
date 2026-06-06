@@ -5,17 +5,21 @@
   "VISA_GUIDE_PROMPT" : "Tell me your situation and I’ll help guide your visa process." ,
   "apply" : "Apply",
   "avatar" : "Avatar",
+  "citizenship" : "Citizenship",
   "copyright" : "© 2026 Visa Services",
   "description" : "This is the home page" ,
   "home" : "Home",
+  "Immigration News" : "Immigration News",
   "language" : "Language",
   "login" : "Login",
   "logout" : "Logout",
+  "news" : "News",
   "privacy" : "Privacy",
   "save" : "Save",
   "status" : "Status",
   "support" : "Support",
   "terms" : "Terms",
   "todo" : "ToDo",
-  "title" : "Welcome"
+  "title" : "Welcome",
+  "visa" : "Visa"
 }
