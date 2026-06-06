@@ -179,8 +179,27 @@ import fs from "fs";
 
 const FILE = "./data/immigration-news.json";
 
+function ensureFileExists() {
+  const dir = "./data";
+
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  if (!fs.existsSync(FILE)) {
+    fs.writeFileSync(FILE, JSON.stringify([], null, 2));
+  }
+}
+
+// run once at startup
+ensureFileExists();
+
 function readNews() {
-  return JSON.parse(fs.readFileSync(FILE, "utf-8"));
+  try {
+    return JSON.parse(fs.readFileSync(FILE, "utf-8"));
+  } catch (e) {
+    return [];
+  }
 }
 
 function writeNews(data) {
