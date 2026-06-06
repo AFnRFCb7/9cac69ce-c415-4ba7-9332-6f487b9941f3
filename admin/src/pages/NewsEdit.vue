@@ -31,7 +31,6 @@
 import { ref, watch , computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-const route = useRoute();
 const id = route.params.id as string;
 
 const isNew = computed(() => !id || id === "new");
