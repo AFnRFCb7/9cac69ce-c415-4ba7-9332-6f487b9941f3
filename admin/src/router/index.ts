@@ -5,8 +5,8 @@ import NewsEdit from "../pages/NewsEdit.vue";
 const routes = [
   { path: "/", redirect: "/news" },
   { path: "/news", component: NewsList },
-  { path: "/news/:id", component: NewsEdit },
-  { path: "/news/new", component: NewsEdit }
+  { path: "/news/new", component: NewsEdit },
+  { path: "/news/:id", component: NewsEdit }
 ];
 
 export default createRouter({
