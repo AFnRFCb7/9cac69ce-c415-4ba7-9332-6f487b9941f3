@@ -5,7 +5,7 @@
     <h2>URL</h2>
     <input v-model="form.url" placeholder="URL" />
 
-    <h2>title</h2>
+    <h2>Title</h2>
     <h3>English</h3>
     <input v-model="form.title.en" placeholder="Title EN" />
     <h3>Spanish</h3>
@@ -15,29 +15,30 @@
 
     <h2>Summary</h2>
     <h3>English</h3>
-    <textarea v-model="form.summary.en" placeholder="Summary EN" cols="80" rows="5" />
+    <textarea v-model="form.summary.en" cols="80" rows="5" />
     <h3>Spanish</h3>
-    <textarea v-model="form.summary.es" placeholder="Summary ES"  cols="80" rows="5"/>
+    <textarea v-model="form.summary.es" cols="80" rows="5" />
     <h3>Chinese</h3>
-    <textarea v-model="form.summary.zh" placeholder="Summary ZH"  cols="80" rows="5" />
+    <textarea v-model="form.summary.zh" cols="80" rows="5" />
 
-
-    <br/>
+    <br />
     <button @click="save">Save</button>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, watch , computed } from "vue";
+import { ref, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
-const id = route.params.id as string;
-
-const isNew = computed(() => !id || id === "new");
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
+const route = useRoute();
 const router = useRouter();
+
+const isNew = computed(() => {
+  const id = route.params.id as string | undefined;
+  return !id || id === "new";
+});
 
 const form = ref({
   title: { en: "", es: "", zh: "" },
@@ -45,22 +46,22 @@ const form = ref({
   url: ""
 });
 
-const emptyForm = () => ({
-  title: { en: "", es: "", zh: "" },
-  summary: { en: "", es: "", zh: "" },
-  url: ""
-});
+function emptyForm() {
+  return {
+    title: { en: "", es: "", zh: "" },
+    summary: { en: "", es: "", zh: "" },
+    url: ""
+  };
+}
 
 watch(
   () => route.params.id,
   async (id) => {
-    // NEW ARTICLE
     if (!id || id === "new") {
       form.value = emptyForm();
       return;
     }
 
-    // EDIT EXISTING ARTICLE
     const res = await fetch(`${API}/api/immigration-news`);
     const data = await res.json();
 
@@ -72,28 +73,26 @@ watch(
 );
 
 const save = async () => {
-  const id = route.params.id;
-  const isNew = !id || id === "new";
+  const id = route.params.id as string | undefined;
+  const newMode = !id || id === "new";
 
-  const method = isNew ? "POST" : "PUT";
-  const url = isNew
+  const url = newMode
     ? `${API}/api/immigration-news`
     : `${API}/api/immigration-news/${id}`;
 
   await fetch(url, {
-    method,
-    headers: {
-      "Content-Type": "application/json"
-    },
+    method: newMode ? "POST" : "PUT",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form.value)
   });
 
   router.push("/news");
 };
 </script>
+
 <style>
 input {
-    width: 100%;
-    box-sizing: border-box ;
+  width: 100%;
+  box-sizing: border-box;
 }
 </style>
