@@ -36,7 +36,7 @@ const id = route.params.id as string;
 const isNew = computed(() => !id || id === "new");
 
 const API = import.meta.env.VITE_API_BASE_URL;
-const route = useRoute();
+
 const router = useRouter();
 
 const form = ref({
