@@ -12,23 +12,32 @@ import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { marked } from "marked";
 
+const API = import.meta.env.VITE_API_BASE_URL;
+
 const { locale } = useI18n();
 const route = useRoute();
 
 const html = ref("");
 
-async function loadMarkdown(path: string) {
-  const res = await fetch(path);
+async function loadMarkdown(page: string, lang: string) {
+  const res = await fetch(
+    `${API}/api/content/${page}?lang=${lang}`
+  );
+
+  if (!res.ok) {
+    html.value = "<p>Content not found</p>";
+    return;
+  }
+
   const text = await res.text();
+
   html.value = DOMPurify.sanitize(await marked.parse(text));
 }
 
 watchEffect(() => {
-  const page = route.meta.page as string;
+  const page = (route.meta.page as string) || "home";
+  const lang = locale.value || "en";
 
-  const file =
-    `/content/${page}.${locale.value}.md`;
-
-  loadMarkdown(file);
+  loadMarkdown(page, lang);
 });
 </script>
