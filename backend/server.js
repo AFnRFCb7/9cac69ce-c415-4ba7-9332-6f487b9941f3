@@ -376,6 +376,33 @@ app.get("/api/content/:page", (req, res) => {
   }
 });
 
+import fs from "fs";
+import path from "path";
+
+app.post("/api/content/:page", (req, res) => {
+  const { page } = req.params;
+  const lang = req.query.lang || "en";
+
+  const fileName = `${page}.${lang}.md`;
+  const filePath = path.join(process.cwd(), "data", "content", fileName);
+
+  const { content } = req.body;
+
+  if (typeof content !== "string") {
+    return res.status(400).send("Missing or invalid content");
+  }
+
+  try {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, content, "utf-8");
+
+    res.send({ ok: true, page, lang });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to write file");
+  }
+});
+
 
 app.get("/health/:id", (req,res) => {
     res.json(req.params.id);
