@@ -6,6 +6,7 @@
   "apply" : "Apply",
   "avatar" : "Avatar",
   "citizenship" : "Citizenship",
+  "do I need a visa?" : "Do I need a visa?",
   "copyright" : "© 2026 Visa Services",
   "description" : "This is the home page" ,
   "home" : "Home",
@@ -21,5 +22,13 @@
   "terms" : "Terms",
   "todo" : "ToDo",
   "title" : "Welcome",
-  "visa" : "Visa"
+  "visa" : "Visa",
+  "DO_I_NEED_A_VISA": "Do I need a visa?",
+  "ASK_DESTINATION": "Which country are you traveling to?",
+  "ASK_NATIONALITY": "What is your nationality?",
+  "ASK_PURPOSE": "What is the purpose of your trip?",
+  "UNSUPPORTED_DESTINATION" : "Sorry, we do not provide visa guidance for {country}.",
+  "UNSUPPORTED_PURPOSE": "Sorry, we do not currently provide visa guidance for {purpose}.",
+  "NO_VISA_REQUIRED": "Citizens of {nationality} generally do not need a visa for tourism travel to {destination}.",
+  "NO_VISA_ESTA": "Citizens of {nationality} generally do not need a visa for tourism travel to {destination}, but they may need to obtain ESTA authorization before traveling."
 }

@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { computed , reactive } from "vue";
 
 const ws = new WebSocket(`${import.meta.env.VITE_SOCKET_BASE}`);
 
@@ -54,3 +54,7 @@ export async function updateMagicNumber(value) {
   const updatedUser = await res.json();
   auth.user = updatedUser;
 }
+
+export const language = computed(() =>
+  auth.user?.locale || "en"
+);

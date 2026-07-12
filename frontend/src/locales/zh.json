@@ -4,6 +4,7 @@
   "apply": "申请",
   "citizenship" : "公民身份",
   "description": "这是主页",
+  "do I need a visa?" : "我需要签证吗？",
   "home": "首页",
   "Immigration News" : "移民新闻",
   "language": "语言",
@@ -15,5 +16,13 @@
   "support": "支持",
   "terms": "条款",
   "title": "欢迎",
-  "visa" : "签证"
+  "visa" : "签证",
+  "DO_I_NEED_A_VISA": "我需要签证吗？",
+  "ASK_DESTINATION": "您要前往哪个国家？",
+  "ASK_NATIONALITY": "您的国籍是什么？",
+  "ASK_PURPOSE": "您此次旅行的目的是什么？",
+  "UNSUPPORTED_DESTINATION": "抱歉，我们目前不提供 {country} 的签证指导服务。",
+  "UNSUPPORTED_PURPOSE": "抱歉，我们目前不提供关于“{purpose}”的签证指导。",
+  "NO_VISA_REQUIRED": "{nationality}公民通常前往{destination}旅游不需要签证。",
+  "NO_VISA_ESTA": "{nationality}公民通常前往{destination}旅游不需要签证，但可能需要在旅行前申请ESTA授权。"
 }

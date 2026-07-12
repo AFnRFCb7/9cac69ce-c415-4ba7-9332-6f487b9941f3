@@ -4,6 +4,7 @@
   "apply": "Aplicar",
   "citizenship" : "Ciudadanía",
   "description": "Esta es la página de inicio",
+  "do I need a visa?" : "¿Necesito una visa?",
   "home": "Inicio",
   "Immigration News" : "Noticias de inmigración",
   "language": "Idioma",
@@ -15,5 +16,12 @@
   "support": "Soporte",
   "terms": "Términos",
   "title": "Bienvenido",
-  "visa" : "Visa"
+  "visa" : "Visa",
+  "DO_I_NEED_A_VISA": "¿Necesito una visa?",
+  "ASK_DESTINATION": "¿A qué país viaja?",
+  "ASK_NATIONALITY": "¿Cuál es su nacionalidad?",
+  "ASK_PURPOSE": "¿Cuál es el propósito de su viaje?",
+  "UNSUPPORTED_DESTINATION": "Lo sentimos, no ofrecemos orientación sobre visas para {country}.",
+  "UNSUPPORTED_PURPOSE": "Lo sentimos, actualmente no ofrecemos orientación sobre visas para {purpose}.",
+  "NO_VISA_REQUIRED": "Los ciudadanos de {citizenship} generalmente no necesitan visa para viajar por turismo a {destination}."
 }
