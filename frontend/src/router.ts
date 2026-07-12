@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { auth } from "@/auth";
+import { ensureCMSLoaded } from "@shared/state/load";
 
 import HomePage from "@/pages/HomePage.vue";
 import MainLayout from "@/components/MainLayout.vue";
@@ -8,6 +9,8 @@ import NewsPage from "@/pages/NewsPage6.vue"
 import MarkdownPage from "@/pages/MarkdownPage.vue";
 import ChatPage from "@/pages/ChatPage.vue";
 import ToDo from "@/components/ToDo.vue";
+
+
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -88,8 +91,9 @@ export const router = createRouter({
     }
   ],
 });
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   if (to.meta.requiresAuth && !auth.user) {
     return "/login";
   }
+  await ensureCMSLoaded();
 });

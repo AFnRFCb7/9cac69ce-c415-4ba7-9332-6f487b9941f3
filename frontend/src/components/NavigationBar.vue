@@ -4,9 +4,25 @@
       <RouterLink to="/">
         {{ t("home") }}
       </RouterLink>
-      <RouterLink to="/apply">
-        {{ t("apply") }}
-      </RouterLink>
+      <div class="dropdown">
+        <span class="menu-label">
+             {{ t("apply") }}
+        </span>
+        <div class="dropdown-menu">
+            <RouterLink to="/chat">
+                {{ t("do I need a visa?") }}
+            </RouterLink>
+            <RouterLink to="/apply/work">
+              Work Visa
+            </RouterLink>
+            <RouterLink to="/apply/student">
+              Student Visa
+            </RouterLink>
+            <RouterLink to="/apply/family">
+              Family Visa
+            </RouterLink>
+        </div>
+      </div>
       <RouterLink to="/visa">
         {{ t("visa") }}
       </RouterLink>
@@ -32,16 +48,62 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 </script>
 <style scoped>
-a {
+.nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+a,
+.menu-label {
     display: inline-block;
     color: white;
     text-decoration: none;
-    margin-right: 1rem;
     opacity: 0.65;
-    transition: opacity 0.35s ease;
+    cursor: pointer;
+    transition: opacity .35s ease;
 }
-a:hover {
+
+a:hover,
+.menu-label:hover {
     opacity: 1;
-    transform: scale(1.05);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    min-width: 180px;
+
+    background: #1e293b;
+    border-radius: 4px;
+    padding: .5rem 0;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu a {
+    margin: 0;
+    padding: .5rem 1rem;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: #334155;
+}
+.left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 </style>

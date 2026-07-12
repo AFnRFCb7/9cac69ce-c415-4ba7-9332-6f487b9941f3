@@ -27,13 +27,13 @@
 </template>
 
 <script setup lang="ts">
+import { language } from "@/auth";
 import { useI18n } from "vue-i18n";
 
 
 const { t , locale } = useI18n();
 
 
-console.log("CHAT LOCALE",locale.value);
 import { ref } from "vue";
 import ChatMessage from "@/components/chat/ChatMessage.vue";
 
@@ -60,23 +60,27 @@ async function send() {
   pending.value = true;
 
   try {
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      credentials: "include" ,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messages: messages.value,
-      })
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_BASE}/api/chat`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: messages.value,
+          locale: language.value
+        }),
+      }
+    );
 
     const data = await res.json();
 
     if((data.kind === "TEXT")&&(data.variant === "I18N")){
         messages.value.push({
             role: "assistant",
-            content: t(data.key),
+            content: t(data.key,data.params),
         });
     }else if((data.kind === "TEXT")&&(data.variant === "LITERAL")) {
         messages.value.push({

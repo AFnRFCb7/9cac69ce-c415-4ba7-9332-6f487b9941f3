@@ -15,8 +15,6 @@ async function bootstrap() {
     .use(router)
     .use(i18n)
     .mount("#app");
-    console.log("BOOT LOCALE", i18n.global.locale.value);
-    console.log("LOCALSTORAGE locale =", localStorage.getItem("locale"));
 }
 
 bootstrap();
