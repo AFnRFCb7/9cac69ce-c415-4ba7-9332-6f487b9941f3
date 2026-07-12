@@ -180,15 +180,24 @@ app.get(
     failureRedirect: "/login",
   }),
 
-  (req, res) => {
+  (req, res, next) => {
     let user = users.find(user => user.id === req.user.id);
+
     if (!user) {
-        user = req.user;
-        user.magicNumber = 0 ;
-        users.push(req.user);
+      user = req.user;
+      user.magicNumber = 0;
+      users.push(user);
     }
-    req.user=user;
-    res.redirect(process.env.FRONTEND_ORIGIN);
+
+    req.user = user;
+
+    req.session.save(err => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect(process.env.FRONTEND_ORIGIN);
+    });
   }
 );
 
