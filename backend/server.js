@@ -153,6 +153,13 @@ app.post("/set-language", (req, res) => {
 });
 
 app.get("/me", (req, res) => {
+ console.log({
+    cookie: req.headers.cookie,
+    sessionID: req.sessionID,
+    session: req.session,
+    user: req.user,
+    isAuthenticated: req.isAuthenticated?.()
+  });
   res.json(req.user || null);
 });
 
